@@ -111,11 +111,13 @@ public class AgenceTests {
         List<Agence> agences = fullAgenceRepository.findAll(
                 Sort.by(Sort.Direction.DESC, "idAgence"));
 
-        System.out.println("Agences triées par id décroissant :");
-        agences.forEach(agence -> System.out.printf(
-                "%d | %s | %s | %s | %s%n",
-                agence.getIdAgence(), agence.getNom(), agence.getVille(),
-                agence.getAdresse(), agence.getTelephone()));
+        StringBuilder output = new StringBuilder("=== Agences triées par id décroissant ===\n");
+        agences.forEach(agence -> output.append(agence.getIdAgence()).append(" | ")
+                .append(agence.getNom()).append(" | ")
+                .append(agence.getVille()).append(" | ")
+                .append(agence.getAdresse()).append(" | ")
+                .append(agence.getTelephone()).append('\n'));
+        org.junit.jupiter.api.Assertions.fail(output.toString());
     }
 
     @Test
@@ -123,19 +125,23 @@ public class AgenceTests {
         Page<Agence> page = fullAgenceRepository.findAll(
                 PageRequest.of(0, 2, Sort.by(Sort.Direction.DESC, "idAgence")));
 
-        System.out.printf("Nombre total de pages : %d%n", page.getTotalPages());
+        StringBuilder output = new StringBuilder("=== Agences paginées (taille=2) ===\n")
+                .append("Nombre total de pages : ").append(page.getTotalPages()).append("\n\n");
         while (true) {
-            System.out.printf("Page en cours : %d%n", page.getNumber() + 1);
-            page.getContent().forEach(agence -> System.out.printf(
-                    "%d | %s | %s | %s | %s%n",
-                    agence.getIdAgence(), agence.getNom(), agence.getVille(),
-                    agence.getAdresse(), agence.getTelephone()));
+            output.append("--- Page ").append(page.getNumber() + 1).append(" ---\n");
+            page.getContent().forEach(agence -> output.append(agence.getIdAgence()).append(" | ")
+                    .append(agence.getNom()).append(" | ")
+                    .append(agence.getVille()).append(" | ")
+                    .append(agence.getAdresse()).append(" | ")
+                    .append(agence.getTelephone()).append('\n'));
+            output.append('\n');
 
             if (!page.hasNext()) {
                 break;
             }
             page = fullAgenceRepository.findAll(page.nextPageable());
         }
+        org.junit.jupiter.api.Assertions.fail(output.toString());
     }
 }
 
