@@ -1,4 +1,4 @@
-package tn.esprit.autoloc.domain;
+package tn.esprit.autoloc.autolocapi.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -14,12 +14,15 @@ public class Reservation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idReservation;
 
+    @Column(nullable = false)
     private LocalDate dateDebut;
 
+    @Column(nullable = false)
     private LocalDate dateFin;
 
-    @Column(length = 30)
-    private String statut;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, length = 20)
+    private StatutReservation statut;
 }

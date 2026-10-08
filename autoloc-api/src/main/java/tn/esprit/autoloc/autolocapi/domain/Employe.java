@@ -1,4 +1,4 @@
-package tn.esprit.autoloc.domain;
+package tn.esprit.autoloc.autolocapi.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -13,12 +13,12 @@ public class Employe {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idEmploye;
 
-    @Column(nullable = false, length = 100)
+    @Column(nullable = false, length = 50)
     private String nom;
 
-    @Column(nullable = false, length = 100)
+    @Column(nullable = false, length = 50)
     private String prenom;
 
     @Enumerated(EnumType.STRING)

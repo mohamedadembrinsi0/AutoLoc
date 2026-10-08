@@ -1,4 +1,4 @@
-package tn.esprit.autoloc.domain;
+package tn.esprit.autoloc.autolocapi.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -14,10 +14,12 @@ public class Maintenance {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idMaintenance;
 
+    @Column(nullable = false)
     private LocalDate dateDebut;
 
+    @Column
     private LocalDate dateFin;
 
     @Column(length = 500)

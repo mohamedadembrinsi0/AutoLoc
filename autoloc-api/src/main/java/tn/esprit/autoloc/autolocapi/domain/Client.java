@@ -1,4 +1,4 @@
-package tn.esprit.autoloc.domain;
+package tn.esprit.autoloc.autolocapi.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -14,22 +14,23 @@ public class Client {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idClient;
 
-    @Column(nullable = false, length = 100)
+    @Column(nullable = false, length = 50)
     private String nom;
 
-    @Column(nullable = false, length = 100)
+    @Column(nullable = false, length = 50)
     private String prenom;
 
-    @Column(nullable = false, unique = true, length = 150)
+    @Column(nullable = false, unique = true, length = 100)
     private String email;
 
-    @Column(length = 30)
+    @Column(nullable = false, length = 20)
     private String telephone;
 
-    @Column(length = 50)
+    @Column(nullable = false, unique = true, length = 30)
     private String numPermis;
 
+    @Column(nullable = false)
     private LocalDate dateInscription;
 }

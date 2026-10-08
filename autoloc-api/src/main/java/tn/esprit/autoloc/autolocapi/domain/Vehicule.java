@@ -1,8 +1,7 @@
-package tn.esprit.autoloc.domain;
-
-import jakarta.persistence.*;
-import lombok.*;
-import java.math.BigDecimal;
+package tn.esprit.autoloc.autolocapi.domain;
+import jakarta.persistence .*;
+import lombok .*;
+import java.math .*;
 
 @Entity
 @Table(name = "vehicule")
@@ -35,4 +34,7 @@ public class Vehicule {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 20)
     private StatutVehicule statut;
+
+    @ManyToOne
+    private Agence agence;
 }
