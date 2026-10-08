@@ -124,11 +124,18 @@ public class AgenceTests {
                 PageRequest.of(0, 2, Sort.by(Sort.Direction.DESC, "idAgence")));
 
         System.out.printf("Nombre total de pages : %d%n", page.getTotalPages());
-        System.out.printf("Page en cours : %d%n", page.getNumber() + 1);
-        page.getContent().forEach(agence -> System.out.printf(
-                "%d | %s | %s | %s | %s%n",
-                agence.getIdAgence(), agence.getNom(), agence.getVille(),
-                agence.getAdresse(), agence.getTelephone()));
+        while (true) {
+            System.out.printf("Page en cours : %d%n", page.getNumber() + 1);
+            page.getContent().forEach(agence -> System.out.printf(
+                    "%d | %s | %s | %s | %s%n",
+                    agence.getIdAgence(), agence.getNom(), agence.getVille(),
+                    agence.getAdresse(), agence.getTelephone()));
+
+            if (!page.hasNext()) {
+                break;
+            }
+            page = fullAgenceRepository.findAll(page.nextPageable());
+        }
     }
 }
 
