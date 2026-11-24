@@ -1,0 +1,19 @@
+﻿{
+  "id": "autoloc-api-collection",
+  "name": "AutoLoc-API",
+  "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+  "variable": [{"key":"asiApiUrl","value":"http://localhost:8080/api","type":"string"}],
+  "item": [
+    {"name":"Agences","item":[{"name":"Lister","request":{"method":"GET","url":"{{asiApiUrl}}/agences"},"event":[{"listen":"test","script":{"exec":["pm.test('HTTP 200', () => pm.response.to.have.status(200));"]}}]},{"name":"Consulter","request":{"method":"GET","url":"{{asiApiUrl}}/agences/1"}},{"name":"Créer","request":{"method":"POST","header":[{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\"nom\":\"Agence Centre\",\"ville\":\"Tunis\",\"adresse\":\"1 rue Exemple\",\"telephone\":\"71123456\"}"},"url":"{{asiApiUrl}}/agences"}},{"name":"Modifier","request":{"method":"PUT","header":[{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\"nom\":\"Agence Centre\",\"ville\":\"Tunis\",\"adresse\":\"2 rue Exemple\",\"telephone\":\"71123456\"}"},"url":"{{asiApiUrl}}/agences/1"}},{"name":"Supprimer","request":{"method":"DELETE","url":"{{asiApiUrl}}/agences/1"}}]},
+    {"name":"Véhicules","item":[{"name":"Lister","request":{"method":"GET","url":"{{asiApiUrl}}/vehicules"}},{"name":"Consulter","request":{"method":"GET","url":"{{asiApiUrl}}/vehicules/1"}}]},
+    {"name":"Employés","item":[{"name":"Lister","request":{"method":"GET","url":"{{asiApiUrl}}/employes"}},{"name":"Affecter à agence (transactionnel)","request":{"method":"POST","header":[{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\"agence\":{\"nom\":\"Agence Centre\",\"ville\":\"Tunis\",\"adresse\":\"1 rue Exemple\",\"telephone\":\"71123456\"},\"employes\":[{\"nom\":\"Ben Ali\",\"prenom\":\"Sami\",\"role\":\"AGENT\"},{\"nom\":\"Trabelsi\",\"prenom\":\"Nour\",\"role\":\"MANAGER\"}]}"},"url":"{{asiApiUrl}}/agences/1/employes"}}]},
+    {"name":"Équipements","item":[{"name":"Lister","request":{"method":"GET","url":"{{asiApiUrl}}/equipements"}},{"name":"Affecter à un véhicule","request":{"method":"POST","url":"{{asiApiUrl}}/equipements/1/vehicules/1"}},{"name":"Désaffecter d'un véhicule","request":{"method":"DELETE","url":"{{asiApiUrl}}/equipements/1/vehicules/1"}}]},
+    {"name":"Contrats","item":[{"name":"Lister","request":{"method":"GET","url":"{{asiApiUrl}}/contrats"}}]},
+    {"name":"Réservations","item":[{"name":"Lister","request":{"method":"GET","url":"{{asiApiUrl}}/reservations"}}]},
+    {"name":"Maintenances","item":[{"name":"Lister","request":{"method":"GET","url":"{{asiApiUrl}}/maintenances"}}]},
+    {"name":"Paiements (lecture seule)","item":[{"name":"Lister","request":{"method":"GET","url":"{{asiApiUrl}}/paiements"}},{"name":"Consulter","request":{"method":"GET","url":"{{asiApiUrl}}/paiements/1"}}]},
+    {"name":"Documentation OpenAPI","request":{"method":"GET","url":"{{asiApiUrl}}/v3/api-docs"}}
+  ]
+}
+
+
